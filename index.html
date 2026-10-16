@@ -43,12 +43,22 @@ section{padding:88px 0}
 .sec-head h2{font-size:clamp(28px,3vw,42px)}
 .sec-head span{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 32px}
-.card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#EEE}
+.card .slider{position:relative;overflow:hidden;background:#EEE}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;display:block;scroll-snap-align:start;scroll-snap-stop:always}
+.card.wide{grid-column:1/-1}
+.card.wide .track img{aspect-ratio:16/9}
 .card .cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;gap:16px}
 .card h3{font-size:24px}
 .card small{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-.card.wide{grid-column:1/-1}
-.card.wide img{aspect-ratio:21/9}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(250,250,248,.85);color:var(--ink);border:0;padding:0;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;cursor:pointer;opacity:0;transition:opacity .25s;letter-spacing:0}
+.nav.prev{left:14px}.nav.next{right:14px}
+.slider:hover .nav,.slider:focus-within .nav{opacity:1}
+.dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.4);transition:background .2s}
+.dots i.on{background:#fff}
+@media(hover:none){.nav{display:none}}
 .contact{background:#F3F1EC}
 .contact .inner{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
 .contact h2{font-size:clamp(28px,3vw,42px);margin-bottom:20px}
@@ -67,7 +77,7 @@ button[disabled]{opacity:.5;cursor:default}
 .msg{font-size:15px;color:var(--ink);min-height:24px}
 footer{padding:48px 0;border-top:1px solid var(--line);font-size:12px;color:var(--mute);letter-spacing:.08em}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between}
-@media(max-width:800px){.grid{grid-template-columns:1fr;gap:36px}.contact .inner{grid-template-columns:1fr;gap:40px}.row{grid-template-columns:1fr}.hero{height:76vh}.hero .text{bottom:40px}section{padding:64px 0}.card.wide img{aspect-ratio:3/2}}
+@media(max-width:800px){.sec-head{flex-direction:column;gap:10px;margin-bottom:28px}.grid{grid-template-columns:1fr;gap:36px}.contact .inner{grid-template-columns:1fr;gap:40px}.row{grid-template-columns:1fr}.hero{height:76vh}.hero .text{bottom:40px}section{padding:64px 0}.track img{aspect-ratio:1/1}.card.wide .track img{aspect-ratio:4/5}.card h3{font-size:22px}.card .cap{flex-direction:column;gap:4px}}
 </style>
 </head>
 <body>
@@ -91,19 +101,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-bet
 <section id="work"><div class="wrap">
   <div class="sec-head"><h2>Selected work</h2><span>Architecture · Interiors · Kitchens</span></div>
   <div class="grid">
-    <article class="card wide"><img src="img/pb-belgravia.jpg" alt="Maison Belgravia, Paul Badran Architects, London"><div class="cap"><h3>Maison Belgravia</h3><small>Belgravia, London</small></div></article>
-    <article class="card"><img src="img/pb-nacka.jpg" alt="Nacka Residence, Paul Badran Architects, Stockholm" loading="lazy"><div class="cap"><h3>Nacka Residence</h3><small>Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-astoria.jpg" alt="Villa Astoria, Paul Badran Architects, Houston" loading="lazy"><div class="cap"><h3>Villa Astoria</h3><small>Houston, Texas</small></div></article>
-    <article class="card"><img src="img/pb-lheritage.jpg" alt="L'Héritage, Paul Badran Architects, Champagne" loading="lazy"><div class="cap"><h3>L’Héritage</h3><small>Champagne, France</small></div></article>
-    <article class="card"><img src="img/pb-kenza.jpg" alt="La Résidence Kenza, Paul Badran Architects, Stockholm" loading="lazy"><div class="cap"><h3>La Résidence Kenza</h3><small>Vasastan, Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-atelier60.jpg" alt="Atelier 60 kitchen, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Atelier 60</h3><small>Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-eriksberg.jpg" alt="Walnut kitchen with green-veined quartzite, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Eriksbergsgatan</h3><small>Östermalm, Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-bianca.jpg" alt="Atelier Bianca kitchen, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Atelier Bianca</h3><small>Östermalm, Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-walnut.jpg" alt="The Walnut Haven kitchen, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>The Walnut Haven</h3><small>Östermalm, Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-vestige.jpg" alt="Vestige kitchen, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Vestige</h3><small>Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-aurea.jpg" alt="Villa Aurea kitchen, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Villa Aurea</h3><small>Stockholm</small></div></article>
-    <article class="card"><img src="img/pb-oku.jpg" alt="Oku House kitchen, Kitchens by Paul, Lidingö" loading="lazy"><div class="cap"><h3>Oku House</h3><small>Lidingö</small></div></article>
-    <article class="card"><img src="img/pb-karlavagen.jpg" alt="Oak kitchen with curved marble worktop, Kitchens by Paul, Stockholm" loading="lazy"><div class="cap"><h3>Karlavägen</h3><small>Östermalm, Stockholm</small></div></article>
+    <article class="card wide"><div class="slider"><div class="track"><img src="img/salon-dore-1.jpg" alt="Le Salon Doré, Paul Badran Architects, Belgravia, London" loading="lazy" decoding="async"><img src="img/salon-dore-2.jpg" alt="Le Salon Doré, Paul Badran Architects, Belgravia, London" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i></div></div><div class="cap"><h3>Le Salon Doré</h3><small>Belgravia, London</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/nacka-1.jpg" alt="Nacka Residence, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/nacka-2.jpg" alt="Nacka Residence, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/nacka-3.jpg" alt="Nacka Residence, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/nacka-4.jpg" alt="Nacka Residence, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Nacka Residence</h3><small>Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/astoria-1.jpg" alt="Villa Astoria, Paul Badran Architects, Houston, Texas" loading="lazy" decoding="async"><img src="img/astoria-2.jpg" alt="Villa Astoria, Paul Badran Architects, Houston, Texas" loading="lazy" decoding="async"><img src="img/astoria-3.jpg" alt="Villa Astoria, Paul Badran Architects, Houston, Texas" loading="lazy" decoding="async"><img src="img/astoria-4.jpg" alt="Villa Astoria, Paul Badran Architects, Houston, Texas" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Villa Astoria</h3><small>Houston, Texas</small></div></article>
+    <article class="card wide"><div class="slider"><div class="track"><img src="img/lheritage-1.jpg" alt="L’Héritage, Paul Badran Architects, Champagne, France" loading="lazy" decoding="async"><img src="img/lheritage-2.jpg" alt="L’Héritage, Paul Badran Architects, Champagne, France" loading="lazy" decoding="async"><img src="img/lheritage-3.jpg" alt="L’Héritage, Paul Badran Architects, Champagne, France" loading="lazy" decoding="async"><img src="img/lheritage-4.jpg" alt="L’Héritage, Paul Badran Architects, Champagne, France" loading="lazy" decoding="async"><img src="img/lheritage-5.jpg" alt="L’Héritage, Paul Badran Architects, Champagne, France" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>L’Héritage</h3><small>Champagne, France</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/kenza-1.jpg" alt="La Résidence Kenza, Paul Badran Architects, Vasastan, Stockholm" loading="lazy" decoding="async"><img src="img/kenza-2.jpg" alt="La Résidence Kenza, Paul Badran Architects, Vasastan, Stockholm" loading="lazy" decoding="async"><img src="img/kenza-3.jpg" alt="La Résidence Kenza, Paul Badran Architects, Vasastan, Stockholm" loading="lazy" decoding="async"><img src="img/kenza-4.jpg" alt="La Résidence Kenza, Paul Badran Architects, Vasastan, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>La Résidence Kenza</h3><small>Vasastan, Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/atelier60-1.jpg" alt="Atelier 60, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/atelier60-2.jpg" alt="Atelier 60, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/atelier60-3.jpg" alt="Atelier 60, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/atelier60-4.jpg" alt="Atelier 60, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Atelier 60</h3><small>Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/walnut-1.jpg" alt="The Walnut Haven, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"><img src="img/walnut-2.jpg" alt="The Walnut Haven, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i></div></div><div class="cap"><h3>The Walnut Haven</h3><small>Östermalm, Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/bianca-1.jpg" alt="Atelier Bianca, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"><img src="img/bianca-2.jpg" alt="Atelier Bianca, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"><img src="img/bianca-3.jpg" alt="Atelier Bianca, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"><img src="img/bianca-4.jpg" alt="Atelier Bianca, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Atelier Bianca</h3><small>Östermalm, Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/acajou-1.jpg" alt="Maison Acajou, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/acajou-2.jpg" alt="Maison Acajou, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/acajou-3.jpg" alt="Maison Acajou, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/acajou-4.jpg" alt="Maison Acajou, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Maison Acajou</h3><small>Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/aurea-1.jpg" alt="Villa Aurea, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/aurea-2.jpg" alt="Villa Aurea, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/aurea-3.jpg" alt="Villa Aurea, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"><img src="img/aurea-4.jpg" alt="Villa Aurea, Paul Badran Architects, Stockholm" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Villa Aurea</h3><small>Stockholm</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/ebene-1.jpg" alt="Villa Ébène, Paul Badran Architects, Lidingö, Sweden" loading="lazy" decoding="async"><img src="img/ebene-2.jpg" alt="Villa Ébène, Paul Badran Architects, Lidingö, Sweden" loading="lazy" decoding="async"><img src="img/ebene-3.jpg" alt="Villa Ébène, Paul Badran Architects, Lidingö, Sweden" loading="lazy" decoding="async"><img src="img/ebene-4.jpg" alt="Villa Ébène, Paul Badran Architects, Lidingö, Sweden" loading="lazy" decoding="async"></div><button type="button" class="nav prev" aria-label="Previous image">&#8249;</button><button type="button" class="nav next" aria-label="Next image">&#8250;</button><div class="dots"><i></i><i></i><i></i><i></i></div></div><div class="cap"><h3>Villa Ébène</h3><small>Lidingö, Sweden</small></div></article>
+    <article class="card"><div class="slider"><div class="track"><img src="img/karlavagen-1.jpg" alt="Karlavägen, Paul Badran Architects, Östermalm, Stockholm" loading="lazy" decoding="async"></div></div><div class="cap"><h3>Karlavägen</h3><small>Östermalm, Stockholm</small></div></article>
   </div>
 </div></section>
 
@@ -154,6 +163,17 @@ f.addEventListener('submit',async e=>{
   }catch(err){
     msg.innerHTML='Something went wrong. Please email us directly at <a href="mailto:paul@kitchensbypaul.com">paul@kitchensbypaul.com</a>.';btn.disabled=false;
   }
+});
+
+document.querySelectorAll('.slider').forEach(s=>{
+  const t=s.querySelector('.track'),imgs=[...t.children],dots=[...s.querySelectorAll('.dots i')];
+  if(imgs.length<2)return;
+  const idx=()=>Math.round(t.scrollLeft/t.clientWidth);
+  const go=i=>{i=(i+imgs.length)%imgs.length;t.scrollTo({left:i*t.clientWidth,behavior:'smooth'})};
+  s.querySelector('.prev').addEventListener('click',()=>go(idx()-1));
+  s.querySelector('.next').addEventListener('click',()=>go(idx()+1));
+  const paint=()=>{const i=idx();dots.forEach((d,k)=>d.classList.toggle('on',k===i))};
+  t.addEventListener('scroll',()=>requestAnimationFrame(paint),{passive:true});paint();
 });
 </script>
 </body>
